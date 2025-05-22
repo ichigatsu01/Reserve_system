@@ -1,0 +1,17 @@
+# 作成イメージ
+## まとめ
+- 患者・管理者ログイン画面
+- 患者予約・予約取り消し画面
+- 管理者　予約一覧画面
+
+## 作成の狙い
+ReactやMUIに頼らず、JavaScriptでサイトを作る。  
+以前作ったFirebaseの認証機能をもう一度使う。    
+
+## 色
+#454545 #79A1D4 #9fbcdf #abcae8 #ffeed5     
+参考：https://saruwakakun.com/design/gallery/palette
+
+## JavaScriptの今更ながらの復習
+- 関数に()を付けて書くか、付けないかの違い
+その場で実行するか、関数名そのものをなんらかに引き渡すか。
