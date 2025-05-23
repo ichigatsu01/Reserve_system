@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web予約システム</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="src/script.js" defer></script>
 </head>
 <body>
     <header>
-        <div id="logo">ささみまぐろペットクリニック</div>
+        <div id="logo">😺ささみまぐろペットクリニック</div>
         <div id="navi" class="forPC">
             <ul>
                 <li>HOME</li>
@@ -24,12 +27,47 @@
             </ul>
         </div>
     </header>
-    <main>
-        <div id="login">
-            <p>以前通院されたことのある方は、診察券の患者Noを入力してください</p>
-            <button id="loginBtn">ぼたん！！！！！！</button>
+    <!--* ログイン時に表示する画面 -->
+    <div id="login-screen">
+        <div>
+            <div id="login-announce">
+                <h1>Web順番予約システム</h1>
+                <p>受診される方の情報を入力してください。</p>
+                <p>診察番号は診察券の左上に記載されています。</p>
+                <p>※診察券を紛失された方は直接ご来院ください</p>
+            </div>
+            <h2>入力フォーム</h2>
+            <div id="login-form">
+                <!-- <form action="" method="post"> -->
+                    <div class="form-row">
+                        <label for="num">診察番号：</label>
+                        <input type="text" id="num" name="num" required placeholder="0001" value="0001">
+                    </div>
+                    <div class="form-row">
+                        <label for="name">飼い主様のお名前：</label>
+                        <input type="text" id="name" name="name" required placeholder="ツナ田 マグ太郎" value="ツナ田 マグ太郎">
+                    </div>
+                    <div class="form-row">
+                        <label for="tel">電話番号（下4桁）：</label>
+                        <input type="text" id="tel" name="tel" required placeholder="1234" value="1234">
+                    </div>
+                    <div class="form-row">
+                        <input type="submit" id="login-btn" value="予約画面へ">
+                    </div>
+                <!-- </form> -->
+            </div>
         </div>
-    </main>
+    </div><!-- id="login-screen" -->
+    <!--* ログイン後に表示する画面 -->
+    <div id="user-management-screen">
+        <h1 id="greeting">ようこそ、(これが表示されると何らかのエラーが出ています)様</h1>
+        <div>
+            <input type="submit" id="logout-btn" value="ログアウトする">
+        </div>
+        <div id="reservation-detail">
+            <h2>次回の予約：</h2>
+        </div>
+    </div><!-- id="user-management-screen" -->
 </body>
 </html>
 

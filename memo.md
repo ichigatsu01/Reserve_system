@@ -7,6 +7,7 @@
 ## 作成の狙い
 ReactやMUIに頼らず、JavaScriptでサイトを作る。  
 以前作ったFirebaseの認証機能をもう一度使う。    
+予定ではTypeScriptの練習も兼ねるつもりだったが、Reactと組み合わせるほうが効果的と判断して今回は見送り。
 
 ## 色
 #454545 #79A1D4 #9fbcdf #abcae8 #ffeed5     
