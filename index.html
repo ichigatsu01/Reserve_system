@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js'></script>
+    <script src="src/calender.js" defer></script>
     <script src="src/script.js" defer></script>
 </head>
 <body>
@@ -64,9 +66,10 @@
         <div>
             <input type="submit" id="logout-btn" value="ログアウトする">
         </div>
-        <div id="reservation-detail">
+        <!-- <div id="reservation-detail">
             <h2>次回の予約：</h2>
-        </div>
+        </div> -->
+        <div id='calendar'></div>
     </div><!-- id="user-management-screen" -->
 </body>
 </html>

@@ -10,16 +10,16 @@
 
             function isBusinessHours(date, businessHours) {
                 // !ここに判定用関数を書く
-                const day = date.getDate()
-                const time = date.toTimeString().slice(0, 2) // 予約時間の〇時だけとる
+                const day = date.getDay()
+                const time = date.toTimeString().slice(0, 5) // "HH:MM"
 
                 // console.log(day)
                 // console.log(time)
                 console.log(businessHours)
-                return businessHours.some(bh => {
-                    return bh.daysOfWeek.includes(day) &&
-                            time >= bh.startTime &&
-                            time < bh.endTime()
+                return businessHours.some(bg => {
+                    return bg.daysOfWeek.includes(day) &&
+                            time >= bg.startTime &&
+                            time < bg.endTime
                 });
                 }
             
@@ -83,18 +83,22 @@
                 return {
                     // html: `<div>${arg.timeText}</div>`  // 時間だけを表示
                     // html: `予約済み`,  // 時間だけを表示
-                    html: `${arg.event.title}`  // 時間だけを表示
+                    html: `${arg.event.title}`  // 最終的に患者の予約なら「予約済み」そうでないなら設定した内容にしたい（休診日など）
                 };
             },
-            dateClick: function(info) {
+            dateClick: function(info) { // イベントの入っていない日付をクリックした場合の処理
                 console.log(info)
                 bh = calendar.getOption('businessHours')
                 if (info.allDay) {
                     alert('allDayを触らないでくださいっていうか表示されちゃうの邪魔だよねこれ')
-                } else {
+                } else if (isBusinessHours(info.date, bh)) {
                     alert('予約可能なエリアです')
-                    console.log(isBusinessHours(info.date, bh))
+                } else {
+                    alert('営業時間外のため、予約できません')
                 }
+            },
+            eventClick: function(info) {
+                alert('その時間に予約することは出来ません')
             }
             
             });

@@ -15,4 +15,8 @@ ReactやMUIに頼らず、JavaScriptでサイトを作る。
 
 ## JavaScriptの今更ながらの復習
 - 関数に()を付けて書くか、付けないかの違い
-その場で実行するか、関数名そのものをなんらかに引き渡すか。
+()を付ける：その場で実行する　()を付けない：関数名そのものをなんらかに引き渡すか。
+
+## その他メモ
+- 変数をjsファイルをまたいで使う知識の習得
+const hoge = new Fullcalender... ではなく window.hoge = new Fullcalender...と書く

@@ -28,6 +28,7 @@ const handleLogin = () => {
         // console.log('ログイン成功！')
         loginScreen.style.display = 'none'
         userManagementScreen.style.display = 'flex'
+        calendar.render();
         // *予約管理画面の挨拶メッセージ
         document.querySelector('#greeting').textContent = txtName.value + '　様の予約状況です';
     }
