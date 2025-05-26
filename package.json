@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "firebase-admin": "^13.4.0"
+    "@fullcalendar/core": "^6.1.17",
+    "@fullcalendar/daygrid": "^6.1.17",
+    "firebase-admin": "^13.4.0",
+    "fullcalendar": "^6.1.17"
   }
 }

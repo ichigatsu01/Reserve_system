@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+    <meta charset='utf-8' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js'></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const calendarEl = document.getElementById('calendar');
+
+            function isBusinessHours(date, businessHours) {
+                // !ここに判定用関数を書く
+                const day = date.getDate()
+                const time = date.toTimeString().slice(0, 2) // 予約時間の〇時だけとる
+
+                // console.log(day)
+                // console.log(time)
+                console.log(businessHours)
+                return businessHours.some(bh => {
+                    return bh.daysOfWeek.includes(day) &&
+                            time >= bh.startTime &&
+                            time < bh.endTime()
+                });
+                }
+            
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'timeGridWeek',
+            initialDate: "2025-05-25",  //あくまでサンプル表示のため、カレンダーの開始日を固定
+            locale: 'ja',
+            events: [
+                {
+                title: 'テスト1',
+                start: '2025-05-26T12:00:00',
+                end: '2025-05-26T12:30:00',
+                },
+                {
+                title: 'テスト2',
+                start: '2025-05-27T16:00:00',
+                end: '2025-05-27T16:30:00'
+                },
+                {
+                title: 'テスト3',
+                start: '2025-05-29T20:00:00',
+                end: '2025-05-29T20:30:00'
+                },
+                {
+                title: 'テスト4',
+                start: '2025-05-30T10:00:00',
+                end: '2025-05-30T10:30:00'
+                },
+                {
+                title: 'テスト5',
+                start: '2025-05-31T09:00:00',
+                end: '2025-05-31T09:30:00'
+                },
+                {
+                title: '休診日',
+                start: '2025-06-02T09:00:00',
+                end: '2025-06-02T21:00:00'
+                },
+            ],
+            eventColor: '#666',
+            slotMinTime: '09:00:00', // 表示する時間（始）
+            slotMaxTime: '21:00:00', // 表示する時間（終）
+            height: 'auto',          // ←自動で収まるように（または固定値でもOK）
+            slotDuration: '00:30:00',
+            businessHours: [ // 配列を渡して営業時間を表示している
+                {
+                    // 午前の診療時間
+                    daysOfWeek: [1, 2, 4, 5, 6], // 月・火・木・金・土
+                    startTime: '08:00',
+                    endTime: '13:00'
+                },
+                {
+                    // 午後の診療時間
+                    daysOfWeek: [1, 2, 4, 5], // 月・火・木・金
+                    startTime: '16:00',
+                    endTime: '21:00'
+                    }
+                ],
+            eventContent: function(arg) {
+                // console.log(arg)
+                return {
+                    // html: `<div>${arg.timeText}</div>`  // 時間だけを表示
+                    // html: `予約済み`,  // 時間だけを表示
+                    html: `${arg.event.title}`  // 時間だけを表示
+                };
+            },
+            dateClick: function(info) {
+                console.log(info)
+                bh = calendar.getOption('businessHours')
+                if (info.allDay) {
+                    alert('allDayを触らないでくださいっていうか表示されちゃうの邪魔だよねこれ')
+                } else {
+                    alert('予約可能なエリアです')
+                    console.log(isBusinessHours(info.date, bh))
+                }
+            }
+            
+            });
+        calendar.render();
+        });
+    </script>
+    </head>
+    <body>
+        <h1>Web予約システム</h1>
+        <p>毎週水曜日、日曜日は休診日とさせていただいております。</p>
+        <p>診療日：月・火・木・金…9時~13時、16時~21時　土曜日…9時~13時</p>
+        <h2 style="color: red;">6/2(月)は先生出張のため休診日といたします。</h2>
+        <div id='calendar'></div>
+    </body>
+</html>
+
